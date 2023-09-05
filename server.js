@@ -9,8 +9,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//turn on connection to DB and Server
+//Turn on connection to DB and Server
 sequelize.sync({force:true}).then(() => {
-    app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}`));
+    app.listen(PORT, () => {
+        console.log(`Now listening on http://localhost:${PORT}`);
+        //start the app 
+        require('./app/index.js');
+    });
 })
 
