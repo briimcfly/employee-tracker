@@ -41,7 +41,7 @@ inquirer
 ])
 .then((response) => {
     if (response.test_input == 'add_role') {
-        console.log('that worked');
+        require('./routes/AddRole');
     } else {
         console.log('nope');
     }
