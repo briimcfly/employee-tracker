@@ -1,6 +1,8 @@
 DROP DATABASE IF EXISTS company; 
 CREATE DATABASE company;
 
+use company;
+
 CREATE TABLE department(
     id INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(30) NOT NULL,
