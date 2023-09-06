@@ -3,12 +3,19 @@ const {db} = require('../../server.js');
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 
-db.query('SHOW DATABASES', function (err,results) {
-    console.log(results);
-})
 
-inquirer
-.prompt([
+db.query('SELECT id, name FROM department', (err, departments) => {
+    if (err) {
+        console.error("Error getting results from department table: ", err.message);
+        return;
+    }
+
+    const departmentChoices = departments.map(department => ({
+        name: department.name,
+        value: department.id
+    }));
+
+    inquirer.prompt([
     {
         //Ask user for the name
         type: 'input',
@@ -20,13 +27,14 @@ inquirer
         type: 'input',
         message: 'ENTER THE ROLE SALARY',
         name: 'role_salary',
+    },
+    {
+        //Ask user for the name
+        type: 'list',
+        message: 'ENTER THE ROLE DEPARTMENT',
+        name: 'role_dept',
+        choices: departmentChoices
     }
-    // {
-    //     //Ask user for the name
-    //     type: 'input',
-    //     message: 'ENTER THE ROLE DEPARTMENT',
-    //     name: 'role_dept',
-    // },
 ])
 .then((response)=> {
     const {role_name, role_salary } = response;
@@ -40,3 +48,9 @@ inquirer
     })
 
 }) 
+})
+
+
+
+
+
