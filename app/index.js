@@ -1,8 +1,7 @@
-const {readFile, writeFile} = require('fs');
 const inquirer = require('inquirer');
 
 const addRole = require('./routes/AddRole');
-// const addEmp = require('./routes/AddEmployee');
+const addEmp = require('./routes/AddEmployee');
 // const addDept = require('./routes/AddDepartment');
 // const updateEmp = require('./routes/UpdateEmployee');
 const viewRole = require('./routes/ViewRole');
@@ -65,9 +64,9 @@ function mainMenu() {
         // else if (response.main_menu = 'add_dept') {
         //     addDept(mainMenu);
         // } 
-        // else if (response.main_menu = 'add_emp') {
-        //     addEmp(mainMenu);
-        // } 
+        else if (response.main_menu = 'add_emp') {
+            addEmp(mainMenu);
+        } 
         // else {
         //     updateEmp(mainMenu);
         // }
