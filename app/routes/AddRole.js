@@ -48,8 +48,16 @@ function addRole(callback) {
                     return;
                 }
     
-                db.query('SELECT role.id, role.title, role.salary, department.name as department_name FROM role JOIN department ON role.department_id = department.id ORDER BY role.id DESC',
-                (err,roles) => {
+                db.query(`
+                SELECT
+                    role.id, 
+                    role.title, 
+                    role.salary, 
+                    department.name as department_name FROM role JOIN department ON role.department_id = department.id
+                ORDER BY 
+                    role.id 
+                DESC
+                `,(err,roles) => {
                     if(err) {
                         reject(err);
                         return;
