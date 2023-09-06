@@ -17,33 +17,36 @@ function mainMenu() {
             message: 'WHAT WOULD YOU LIKE TO DO?: ',
             name: 'main_menu',
             choices: [
+                new inquirer.Separator('---View'),
                 {
                     value: 'view_dept',
-                    name: 'view all departments'
+                    name: 'View All Departments'
                 },
                 {
                     value: 'view_roles',
-                    name: 'view all roles'
+                    name: 'View All Roles'
                 },
                 {
                     value: 'view_emp',
-                    name: 'view all employees'
+                    name: 'View All Employees'
                 },
+                new inquirer.Separator('---Add'),
                 {
                     value: 'add_dept',
-                    name: 'add a department'
+                    name: 'Add New Department'
                 },
                 {
                     value: 'add_role',
-                    name: 'add a role'
+                    name: 'Add New Role'
                 },
                 {
                     value: 'add_emp',
-                    name: 'add an employee'
+                    name: 'Add New Employee'
                 },
+                new inquirer.Separator('---Update'),
                 {
                     value: 'update_emp',
-                    name: 'update an employee'
+                    name: 'Update an Employee Role'
                 }
             ]
         }
@@ -67,9 +70,9 @@ function mainMenu() {
         else if (response.main_menu = 'add_emp') {
             addEmp(mainMenu);
         } 
-        // else {
-        //     updateEmp(mainMenu);
-        // }
+        else {
+            updateEmp(mainMenu);
+        }
         
     }) 
 }
