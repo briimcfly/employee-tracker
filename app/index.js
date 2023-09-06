@@ -6,7 +6,7 @@ const addRole = require('./routes/AddRole');
 // const addDept = require('./routes/AddDepartment');
 // const updateEmp = require('./routes/UpdateEmployee');
 const viewRole = require('./routes/ViewRole');
-// const viewDept = require('./routes/ViewDepartment');
+const viewDept = require('./routes/ViewDepartment');
 // const viewEmp = require('./routes/ViewEmployee');
 
 
@@ -53,9 +53,9 @@ function mainMenu() {
         if (response.main_menu == 'add_role') {
             addRole(mainMenu);
         } 
-        // else if (response.main_menu = 'view_dept') {
-        //     viewDept(mainMenu);
-        // } 
+        else if (response.main_menu = 'view_dept') {
+            viewDept(mainMenu);
+        } 
         else if (response.main_menu = 'view_roles') {
             viewRole(mainMenu);
         } 
