@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 
 const addRole = require('./routes/AddRole');
 const addEmp = require('./routes/AddEmployee');
-// const addDept = require('./routes/AddDepartment');
+const addDept = require('./routes/AddDepartment');
 const updateEmp = require('./routes/UpdateEmployee');
 const viewRole = require('./routes/ViewRole');
 const viewDept = require('./routes/ViewDepartment');
@@ -64,9 +64,9 @@ function mainMenu() {
         else if (response.main_menu == 'view_emp') {
             viewEmp(mainMenu);
         } 
-        // else if (response.main_menu = 'add_dept') {
-        //     addDept(mainMenu);
-        // } 
+        else if (response.main_menu == 'add_dept') {
+            addDept(mainMenu);
+        } 
         else if (response.main_menu == 'add_emp') {
             addEmp(mainMenu);
         } 
