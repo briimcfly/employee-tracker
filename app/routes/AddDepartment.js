@@ -1,9 +1,9 @@
-const router = require('express').Router();
 const {db} = require('../../server.js');
-const mysql = require('mysql2');
 const inquirer = require('inquirer');
 
+//Add Department Function
 function addDept(callback){
+    //Prompt User for Department Name
     inquirer.prompt([
         {
             type:'input',
@@ -11,9 +11,11 @@ function addDept(callback){
             name:'dept_name'
         }
     ])
+    //Response
     .then(response => {
         const deptName = response.dept_name;
 
+        //Insert into DB
         db.query(`
         INSERT INTO
             department (name)
@@ -21,17 +23,22 @@ function addDept(callback){
             (?)
         `,[deptName],
         (err) => {
+        //Error Handling
             if(err){
                 console.log(err);
             }
 
+            //Select all Departments
             db.query(`SELECT * FROM department`, (err, departments) => {
                 if(err){
                     console.log(err);
                 }
+                //Success Message
                 console.log(`${deptName} succesfully added! \n`);
+                //Display the Departments 
                 console.table(departments);
-    
+                
+                //Prompt User if they'd to add another
                 inquirer.prompt([
                     {
                         name: 'continue',
@@ -39,16 +46,16 @@ function addDept(callback){
                         message: 'WOULD YOU LIKE TO ADD ANOTHER DEPARTMENT?'
                     }
                 ]).then((continueResponse) => {
+                    //If they Want Another, Run Again
                     if (continueResponse.continue) {
                         addDept(callback);
                     } else {
+                        //If not, go back to Main Menu
                         callback(); 
                     }
                 });
             })
-
         }
-        
         )
     })
 }

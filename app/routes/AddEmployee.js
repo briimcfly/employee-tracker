@@ -1,9 +1,9 @@
-const router = require('express').Router();
 const {db} = require('../../server.js');
-const mysql = require('mysql2');
 const inquirer = require('inquirer');
 
+//Add Employee Function
 function addEmp(callback) {
+    //Get Role ID and Title from Table 
     db.query(`
     SELECT
         id,
@@ -11,11 +11,13 @@ function addEmp(callback) {
     FROM
         role
     `, (err, roles) => {
+        //Error Handling
         if (err) {
             console.error("Error getting results from Role table: ", err.message);
             return;
         }
         
+        //List Choices from Roles
         const roleChoices = roles.map(role => ({
             name: role.title,
             value: role.id
@@ -146,10 +148,12 @@ function addEmp(callback) {
                         `,[response.emp_fName,response.emp_lName, response.emp_role],
                         (err)=>{
                             if (err){
+                                //Error Handling
                                 reject(err);
                                 return;
                             }
 
+                            //Query DB For Table Display
                             db.query(`
                             SELECT 
                                 e.id, 
@@ -166,12 +170,16 @@ function addEmp(callback) {
                                 e.id DESC
                         `, (err, employees) => {
                             if (err) {
+                                //Error Handling
                                 console.error("Error fetching data: ", err.message);
                                 return;
                             }
+                            //Success Message
                                 console.log(`${response.emp_fName} ${response.emp_lName} successfully added! \n`);
+                            //Display Table
                                 console.table(employees);
 
+                            //Prompt User if they want to add another
                                 inquirer.prompt([
                                     {
                                         name: 'continue',
@@ -180,8 +188,10 @@ function addEmp(callback) {
                                     }
                                 ]).then((continueResponse) => {
                                     if (continueResponse.continue) {
+                                        //Add Another Employee
                                         addEmp(callback);
                                     } else {
+                                        //Go to Main Menu 
                                         callback(); 
                                     }
                                     });
