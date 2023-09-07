@@ -67,7 +67,7 @@ function mainMenu() {
         // else if (response.main_menu = 'add_dept') {
         //     addDept(mainMenu);
         // } 
-        else if (response.main_menu = 'add_emp') {
+        else if (response.main_menu == 'add_emp') {
             addEmp(mainMenu);
         } 
         else {

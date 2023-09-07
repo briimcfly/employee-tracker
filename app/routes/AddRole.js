@@ -42,7 +42,7 @@ function addRole(callback) {
         return new Promise((resolve, reject) => {
             db.query('INSERT INTO role (title, salary, department_id) VALUES (?,?,?)',
             [role_name, role_salary, role_dept],
-             (err,results)=>{
+             (err)=>{
                 if (err) {
                     reject(err);
                     return;
