@@ -1,10 +1,16 @@
-const router = require('express').Router();
 const {db} = require('../../server.js');
-const mysql = require('mysql2');
-const inquirer = require('inquirer');
 
 function viewRole(callback) {
-    db.query('SELECT * from role', (err, roles) => {
+    db.query(`
+    SELECT
+        role.id, role.title, role.salary, department.name AS department_name
+    FROM
+        role
+    LEFT JOIN 
+        department
+    ON
+        role.department_id = department.id
+    `, (err, roles) => {
         if (err) {
             console.error("Error getting results from Role table: ", err.message);
             return;
