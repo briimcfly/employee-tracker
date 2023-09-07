@@ -1,9 +1,8 @@
-const router = require('express').Router();
 const {db} = require('../../server.js');
-const mysql = require('mysql2');
-const inquirer = require('inquirer');
 
+//View Employees Function 
 function viewEmp(callback) {
+    //Query Employee Table .. 
     db.query(`
     SELECT
         employee.id,
@@ -18,10 +17,13 @@ function viewEmp(callback) {
         role ON employee.role_id = role.id
     `, (err, employees) => {
         if (err) {
+            //Error Handling 
             console.error("Error getting results from Employee table: ", err.message);
             return;
         }
+        //Display Employee Table 
         console.table(employees);
+        //Main Menu 
         callback();
     })
 }

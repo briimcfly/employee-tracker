@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 
+//Main Menu Options
 const addRole = require('./routes/AddRole');
 const addEmp = require('./routes/AddEmployee');
 const addDept = require('./routes/AddDepartment');
@@ -9,6 +10,7 @@ const viewDept = require('./routes/ViewDepartment');
 const viewEmp = require('./routes/ViewEmployee');
 
 
+//Main Menu Function 
 function mainMenu() {
     inquirer
     .prompt([
@@ -17,33 +19,43 @@ function mainMenu() {
             message: 'WHAT WOULD YOU LIKE TO DO?: ',
             name: 'main_menu',
             choices: [
+                //---------------------Separator  
                 new inquirer.Separator('---View'),
+                //View Departments 
                 {
                     value: 'view_dept',
                     name: 'View All Departments'
                 },
+                //View Roles 
                 {
                     value: 'view_roles',
                     name: 'View All Roles'
                 },
+                //View Employees 
                 {
                     value: 'view_emp',
                     name: 'View All Employees'
                 },
+                //---------------------Separator 
                 new inquirer.Separator('---Add'),
+                //Add Departments 
                 {
                     value: 'add_dept',
                     name: 'Add New Department'
                 },
+                //Add Roles 
                 {
                     value: 'add_role',
                     name: 'Add New Role'
                 },
+                //Add Employees
                 {
                     value: 'add_emp',
                     name: 'Add New Employee'
                 },
+                //---------------------Separator 
                 new inquirer.Separator('---Update'),
+                //Update Employee Role 
                 {
                     value: 'update_emp',
                     name: 'Update an Employee Role'
@@ -51,6 +63,7 @@ function mainMenu() {
             ]
         }
     ])
+    //Main Menu Option Handling 
     .then((response) => {
         if (response.main_menu == 'add_role') {
             addRole(mainMenu);
