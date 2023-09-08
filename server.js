@@ -11,6 +11,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//DB Connect
+
 const db = mysql.createConnection({
     host:'127.0.0.1',
     user: process.env.DB_USER,
@@ -18,21 +20,13 @@ const db = mysql.createConnection({
     database:process.env.DB_NAME
 })
 
+//App Start & Listen
+
 app.listen(PORT, () => {
     console.log(`Now listening on http://localhost:${PORT}`);
     //start the app
     require('./app/index.js');
 })
-
-//Turn on connection to DB and Server
-
-// sequelize.sync({force:true}).then(() => {
-//     app.listen(PORT, () => {
-//         console.log(`Now listening on http://localhost:${PORT}`);
-//         //start the app 
-//         require('./app/index.js');
-//     });
-// })
 
 module.exports ={db};
 

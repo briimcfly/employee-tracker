@@ -26,3 +26,24 @@ A command-line application from scratch to manage a company's employee database,
 `THEN` I am prompted to select an employee to update and their new role and this information is updated in the database <br>
 
 ## Overview 
+The goal of this project was to create a node terminal application that allowed users to manage an employee database for their company. Users can create departments, roles, and employees. Employees can be linked to Roles, and Roles can be linked to Departments. The application uses a node front end with a mysql backend.
+
+[Link to Video Demo](https://www.youtube.com/watch?v=hmYXeBRPUPk&feature=youtu.be)
+
+![application image](./images/readme-img.png)
+
+## Installation
+To get started, clone the repository from the provided link. Then, enter the project directory and use your preferred package manager to install the necessary dependencies.
+
+##  Usage
+After completing the installation, start the application and run 
+`source db/schema.sql` to build the database, then `source db/seeds.sql` to seed the tables. 
+
+## Technologies Used
+* node 
+* npm 
+* mysql
+* inquirer
+
+## Reflection 
+This project has allowed me to apply the core skills I have recently learned and put them into practice. During development, I had the opportunity to deepen my understanding of the Mysql and Node. Additionally, I developed a deeper appreciation for for the importance code commenting, and the development principal DRY. (Don't repeat yourself). In the future, I would like to to add more functionality that allows users to delete department and roles. I would also like to spend more time DRYing out the code.  
